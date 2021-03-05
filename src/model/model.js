@@ -6,7 +6,16 @@ class Model {
         this.matrix = new Array(width * height);
         for(let i = 0; i<this.matrix.length; i++)
             this.matrix[i] = {team: '0', level: 0};
-        console.log('Model created!');
+        this.run();
+    }
+
+    run() {
+        this.step();
+        this.renderID = requestAnimationFrame(() => this.run());
+    }
+
+    pause() {
+        cancelAnimationFrame(this.renderID);
     }
 
     put(teamCode, x, y) {

@@ -1,18 +1,8 @@
 import {useState, useRef, useEffect} from 'react'
 import './canvas.css'
-const {Model} = require('../../model/model.js');
 
-const colorMap = new Map([
-    ['0', [255, 255, 255]],
-    ['A', [255, 0, 0]],
-    ['B', [0, 255, 0]],
-    ['C', [0, 0, 255]]
-]);
-
-
-const Canvas = () => {
+const Canvas = ({model, colorMap}) => {
     const [canvasRef] = useState(useRef(null));
-    const [model] = useState(new Model(400, 300, 9));
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -23,7 +13,6 @@ const Canvas = () => {
         let requestID;
 
         const loop = () => {
-            model.step();
             let nextFrame = ctx.createImageData(canvas.width, canvas.height);
             for(let index = 0; index<model.matrix.length; index++) {
                 let i = index * 4;
@@ -42,12 +31,14 @@ const Canvas = () => {
         return () => {
             cancelAnimationFrame(requestID);
         }
-    }, [canvasRef])
+    }, [canvasRef, model, colorMap])
 
+    // eslint-disable-next-line
     const getCanvas = () => {
         return canvasRef.current;
     }
 
+    // eslint-disable-next-line
     const getContext = () => {
         return canvasRef.current.getContext('2d');
     }
