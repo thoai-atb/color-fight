@@ -1,0 +1,8 @@
+.canvasWrap {
+    display: flex; 
+    width: fit-content;
+    flex-wrap: wrap;
+    border: 5px solid rgb(65, 65, 65);
+    border-radius: 5px;
+    margin: 10px;
+}
