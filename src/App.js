@@ -2,7 +2,7 @@ import Canvas from './components/Canvas/Canvas.js'
 import ColorButton from './components/ColorButton/ColorButton.js'
 import React, {useState, useEffect} from 'react'
 const {Model} = require('./model/Model.js');
-const model = new Model(600, 600, 20);
+const model = new Model(600, 600, 12);
 const colorMap = new Map([
   ['0', [255, 255, 255]],
   ['1', [255, 0, 0]],
