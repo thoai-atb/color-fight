@@ -3,10 +3,14 @@ class Model {
         this.width = width;
         this.height = height;
         this.maxHealth = maxHealth;
-        this.matrix = new Array(width * height);
+        this.initMatrix();
+        this.run();
+    }
+
+    initMatrix() {
+        this.matrix = new Array(this.width * this.height);
         for(let i = 0; i<this.matrix.length; i++)
             this.matrix[i] = {team: '0', level: 0};
-        this.run();
     }
 
     run() {
@@ -16,6 +20,11 @@ class Model {
 
     pause() {
         cancelAnimationFrame(this.renderID);
+    }
+
+    clear() {
+        this.matrix.length = 0;
+        this.initMatrix();
     }
 
     put(teamCode, x, y) {
@@ -32,6 +41,10 @@ class Model {
 
     getTeam(index) {
         return this.matrix[index].team;
+    }
+
+    getLevelNorm(index) {
+        return this.matrix[index].level / this.maxHealth;
     }
     
     step() {

@@ -1,8 +1,13 @@
 import {useState, useRef, useEffect} from 'react'
 import './canvas.css'
 
-const Canvas = ({model, colorMap}) => {
+const Canvas = ({model, config}) => {
     const [canvasRef] = useState(useRef(null));
+    const [mouseInfo] = useState({
+        pressing: false,
+        x: 0,
+        y: 0
+    });
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -16,10 +21,12 @@ const Canvas = ({model, colorMap}) => {
             let nextFrame = ctx.createImageData(canvas.width, canvas.height);
             for(let index = 0; index<model.matrix.length; index++) {
                 let i = index * 4;
-                let [red, green, blue] = colorMap.get(model.getTeam(index));
-                nextFrame.data[i] = red;
-                nextFrame.data[i+1] = green;
-                nextFrame.data[i+2] = blue;
+                let team = model.getTeam(index);
+                let r = team === '0' ? 1 : (model.getLevelNorm(index) + 3) / 4;
+                let [red, green, blue] = config.colorMap.get(team);
+                nextFrame.data[i] = red * r;
+                nextFrame.data[i+1] = green * r;
+                nextFrame.data[i+2] = blue * r;
                 nextFrame.data[i+3] = 255;
             }
             ctx.putImageData(nextFrame, 0, 0);
@@ -31,7 +38,7 @@ const Canvas = ({model, colorMap}) => {
         return () => {
             cancelAnimationFrame(requestID);
         }
-    }, [canvasRef, model, colorMap])
+    }, [canvasRef, model, config])
 
     // eslint-disable-next-line
     const getCanvas = () => {
@@ -51,17 +58,25 @@ const Canvas = ({model, colorMap}) => {
         };
     }
 
-    const mouseDown = (e) => {
+    const mouseMove = (e) => {
         let point = getMousePos(e);
-        model.put('A', point.x, point.y);
+        mouseInfo.x = Math.floor(point.x);
+        mouseInfo.y = Math.floor(point.y);
+        if(mouseInfo.pressing)
+            model.put(config.selectedTeam, mouseInfo.x, mouseInfo.y);
     }
 
-    const mouseUp = () => {
+    const mouseDown = (e) => {
+        mouseInfo.pressing = true;
+    }
+
+    const mouseUp = (e) => {
+        mouseInfo.pressing = false;
     }
     
     return (
         <div className='canvasWrap'>
-            <canvas ref={canvasRef} onMouseDown={mouseDown} onMouseUp={mouseUp} width={model.width} height={model.height}></canvas>
+            <canvas ref={canvasRef} onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseMove={mouseMove} width={model.width} height={model.height}></canvas>
         </div>
     )
 }
