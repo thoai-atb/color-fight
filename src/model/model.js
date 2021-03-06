@@ -97,7 +97,7 @@ class Model {
 
     teamWin(teamA, teamB) {
         for(let r of this.rule.pairs) {
-            if(teamA === r[0] + '' && teamB === r[1] + '')
+            if(teamA === r[0] && teamB === r[1])
                 return true;
         }
         return false;

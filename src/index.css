@@ -48,9 +48,25 @@ button:focus {
   width: 100px;
 }
 
-.color-sticker {
-  display: inline-block;
-  border-radius: 50%;
-  width: 1em;
-  height: 1em;
+.rule-card {
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  padding: none;
+  width: auto;
+  height: 70px;
+}
+
+.rule-card:active {
+  transform: none;
+}
+
+.rule-pair {
+  display: inline-flex;
+  margin: 5px;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--light);
 }

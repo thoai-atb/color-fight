@@ -1,6 +1,6 @@
 import {useState, useRef, useEffect} from 'react'
 import './canvas.css'
-import colorMap from '../../data/colorMap.json'
+import colorlist from '../../data/colorlist.json'
 
 const Canvas = ({model, selectedTeam}) => {
     const [canvasRef] = useState(useRef(null));
@@ -13,18 +13,15 @@ const Canvas = ({model, selectedTeam}) => {
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
-        ctx.fillStyle = 'red';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+        
         let requestID;
-
         const loop = () => {
             let nextFrame = ctx.createImageData(canvas.width, canvas.height);
             for(let index = 0; index<model.matrix.length; index++) {
                 let i = index * 4;
                 let team = model.getTeam(index);
-                let r = team === '0' ? 1 : (model.getLevelNorm(index) + 3) / 4;
-                let [red, green, blue] = colorMap[team];
+                let r = team === 0 ? 1 : (model.getLevelNorm(index) + 3) / 4;
+                let [red, green, blue] = colorlist[team];
                 nextFrame.data[i] = red * r;
                 nextFrame.data[i+1] = green * r;
                 nextFrame.data[i+2] = blue * r;

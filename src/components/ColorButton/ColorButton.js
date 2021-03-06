@@ -1,13 +1,11 @@
 import './ColorButton.css'
-import colorMap from '../../data/colorMap.json'
+import ColorSticker from '../ColorSticker/ColorSticker.js'
 
 const ColorButton = ({selected, label, team, func}) => {
-    const ar = colorMap[team + ''];
-    const color = `rgb(${ar[0]}, ${ar[1]}, ${ar[2]})`;
     return (
-        <button className={'colorBtn' + (selected ? ' colorBtn-select' : '')} onMouseDown={() => func(team + '')}>
+        <button className={'colorBtn' + (selected ? ' colorBtn-select' : '')} onMouseDown={() => func(team)}>
             <label>{`${label}`}</label>
-            <div className='color-sticker' style={{backgroundColor: color}}></div>
+            <ColorSticker team={team}/>
         </button>
     )
 }

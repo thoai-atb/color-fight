@@ -1,0 +1,7 @@
+.color-sticker {
+    display: inline-block;
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+    margin: 5px;
+}
