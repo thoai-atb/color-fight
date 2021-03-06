@@ -1,11 +1,11 @@
 class Model {
-    constructor (width, height, maxHealth) {
+    constructor (width, height, maxHealth, rule) {
         this.width = width;
         this.height = height;
         this.maxHealth = maxHealth;
+        this.rule = rule;
         this.initMatrix();
         this.run();
-        console.log('Model created');
     }
 
     initMatrix() {
@@ -96,12 +96,10 @@ class Model {
     }
 
     teamWin(teamA, teamB) {
-        if (teamA === '1' && teamB === '2')
-          return true;
-        if (teamA === '2' && teamB === '3')
-          return true;
-        if (teamA === '3' && teamB === '1')
-          return true;
+        for(let r of this.rule.pairs) {
+            if(teamA === r[0] + '' && teamB === r[1] + '')
+                return true;
+        }
         return false;
     }
 }

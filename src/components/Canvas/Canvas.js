@@ -1,7 +1,8 @@
 import {useState, useRef, useEffect} from 'react'
 import './canvas.css'
+import colorMap from '../../data/colorMap.json'
 
-const Canvas = ({model, colorMap, selectedTeam}) => {
+const Canvas = ({model, selectedTeam}) => {
     const [canvasRef] = useState(useRef(null));
     const [mouseInfo] = useState({
         pressing: false,
@@ -23,9 +24,7 @@ const Canvas = ({model, colorMap, selectedTeam}) => {
                 let i = index * 4;
                 let team = model.getTeam(index);
                 let r = team === '0' ? 1 : (model.getLevelNorm(index) + 3) / 4;
-                if(!colorMap.get(team))
-                    console.log(team, colorMap);
-                let [red, green, blue] = colorMap.get(team);
+                let [red, green, blue] = colorMap[team];
                 nextFrame.data[i] = red * r;
                 nextFrame.data[i+1] = green * r;
                 nextFrame.data[i+2] = blue * r;
@@ -40,7 +39,7 @@ const Canvas = ({model, colorMap, selectedTeam}) => {
         return () => {
             cancelAnimationFrame(requestID);
         }
-    }, [canvasRef, model, colorMap])
+    }, [canvasRef, model])
 
     // eslint-disable-next-line
     const getCanvas = () => {
