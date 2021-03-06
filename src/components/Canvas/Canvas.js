@@ -1,7 +1,7 @@
 import {useState, useRef, useEffect} from 'react'
 import './canvas.css'
 
-const Canvas = ({model, config}) => {
+const Canvas = ({model, colorMap, selectedTeam}) => {
     const [canvasRef] = useState(useRef(null));
     const [mouseInfo] = useState({
         pressing: false,
@@ -23,7 +23,9 @@ const Canvas = ({model, config}) => {
                 let i = index * 4;
                 let team = model.getTeam(index);
                 let r = team === '0' ? 1 : (model.getLevelNorm(index) + 3) / 4;
-                let [red, green, blue] = config.colorMap.get(team);
+                if(!colorMap.get(team))
+                    console.log(team, colorMap);
+                let [red, green, blue] = colorMap.get(team);
                 nextFrame.data[i] = red * r;
                 nextFrame.data[i+1] = green * r;
                 nextFrame.data[i+2] = blue * r;
@@ -38,7 +40,7 @@ const Canvas = ({model, config}) => {
         return () => {
             cancelAnimationFrame(requestID);
         }
-    }, [canvasRef, model, config])
+    }, [canvasRef, model, colorMap])
 
     // eslint-disable-next-line
     const getCanvas = () => {
@@ -63,7 +65,7 @@ const Canvas = ({model, config}) => {
         mouseInfo.x = Math.floor(point.x);
         mouseInfo.y = Math.floor(point.y);
         if(mouseInfo.pressing)
-            model.put(config.selectedTeam, mouseInfo.x, mouseInfo.y);
+            model.put(selectedTeam, mouseInfo.x, mouseInfo.y);
     }
 
     const mouseDown = (e) => {

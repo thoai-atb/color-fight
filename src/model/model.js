@@ -5,6 +5,7 @@ class Model {
         this.maxHealth = maxHealth;
         this.initMatrix();
         this.run();
+        console.log('Model created');
     }
 
     initMatrix() {
@@ -95,11 +96,11 @@ class Model {
     }
 
     teamWin(teamA, teamB) {
-        if (teamA === 'A' && teamB === 'B')
+        if (teamA === '1' && teamB === '2')
           return true;
-        if (teamA === 'B' && teamB === 'C')
+        if (teamA === '2' && teamB === '3')
           return true;
-        if (teamA === 'C' && teamB === 'A')
+        if (teamA === '3' && teamB === '1')
           return true;
         return false;
     }
