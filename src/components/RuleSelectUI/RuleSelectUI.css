@@ -1,0 +1,50 @@
+.rule-select-ui { 
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.267);
+}
+
+.rule-select-ui-content {
+    border: 5px solid var(--dark);
+    border-radius: 5px;
+    background-color: var(--light);
+    margin: 100px auto;
+
+    width: 600px;
+    height: 75%;
+}
+
+.rule-select-ui-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--dark);
+    margin: 10px;
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+
+    font-size: 30px;
+}
+
+.rule-select-ui-closebtn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: none;
+    /* width: 20px; */
+    height: 30px;
+    border: 2px solid var(--darker);
+}
+
+.rule-select-ui-body {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow: auto;
+    padding: 20px;
+}

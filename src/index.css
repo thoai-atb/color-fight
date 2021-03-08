@@ -23,6 +23,8 @@ body, button {
 
 h1 {
   font-size: 50px;
+  margin-top: 30px;
+  margin-bottom: 0px;
 }
 
 button {
@@ -37,36 +39,17 @@ button {
 
 button:active {
   filter: brightness(0.5);
-  transform: rotate(3deg) scale(0.9);
 }
 
-button:focus {
+button:focus, button:hover {
   outline: none;
+  transform: rotate(1deg) scale(0.9);
 }
 
 .eraseBtn {
   width: 100px;
 }
 
-.rule-card {
-  display: inline-flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  padding: none;
-  width: auto;
-  height: 70px;
-}
-
-.rule-card:active {
-  transform: none;
-}
-
-.rule-pair {
-  display: inline-flex;
-  margin: 5px;
-  border-radius: 5px;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--light);
+.hiding {
+  display: none;
 }
