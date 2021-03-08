@@ -6,22 +6,34 @@ import RuleSelectUI from './components/RuleSelectUI/RuleSelectUI.js'
 import Settings from './components/Settings/Settings.js'
 import rules from './data/rules.json'
 const {Model} = require('./model/Model.js')
-const model = new Model(800, 500, 12, rules[0])
+const DEFAULT_SPREAD = 12;
+const DEFAULT_SPRINKLE = 100;
+const model = new Model(800, 500, DEFAULT_SPREAD, rules[0])
 
 const App = () => {
   const [selectedTeam, setSelectedTeam] = useState(model.rule.teams[0]);
   const [showSelectRule, setShowSelectRule] = useState(false);
+  const [sprinkleAmount, setSprinkleAmount] = useState(DEFAULT_SPRINKLE);
+  const [spread, setSpread] = useState(model.maxHealth);
 
   useEffect(() => {
     const keyDown = (e) => {
       if(e.key > '0' && e.key <= '9')
         selectTeam(model.rule.teams[parseInt(e.key) - 1]);
-      if(e.key === ' ')
+      if(e.key === 's')
         model.sprinkle();
     }
     document.addEventListener('keydown', keyDown);
   }, []);
 
+  useEffect(() => {
+    model.maxHealth = spread;
+    model.clear();
+  }, [spread]);
+
+  useEffect(() => {
+    model.sprinkleAmount = sprinkleAmount;
+  }, [sprinkleAmount]);
 
   const selectTeam = (team) => {
     if(model.rule.teams.indexOf(team) !== -1) {
@@ -40,6 +52,11 @@ const App = () => {
     setShowSelectRule(false);
   }
 
+  const setDefaultSettings = () => {
+    setSpread(DEFAULT_SPREAD);
+    setSprinkleAmount(DEFAULT_SPRINKLE);
+  }
+
   return (
     <div className="App" >
       <h1>Color Fight</h1>
@@ -52,9 +69,9 @@ const App = () => {
             return <ColorButton key={index} label={index + 1} selected={selectedTeam === teamID} team={teamID} func={selectTeam} />
           })
         }
-        <button onClick={() => model.sprinkle()}>Sprinkle</button>
-        <button className='eraseBtn' onClick={() => model.clear()}>Clear</button>
-        <Settings/>
+        <button className='actionBtn' onClick={() => model.sprinkle()}>Sprinkle</button>
+        <button className='actionBtn' onClick={() => model.clear()}>Clear</button>
+        <Settings spread={spread} setSpread={setSpread} sprinkleAmount={sprinkleAmount} setSprinkleAmount={setSprinkleAmount} setDefault={setDefaultSettings}/>
       </div>
       <div>
         <h2>Rule:</h2>

@@ -27,6 +27,11 @@ h1 {
   margin-bottom: 0px;
 }
 
+h2 {
+  font-size: 25px;
+  margin: 10px 0px 10px 0px;
+}
+
 .toolbar {
   display: inline-flex;
   align-items: flex-start;
@@ -51,12 +56,23 @@ button:hover {
 
 button:focus {
   outline: none;
+  border: 4px solid var(--dark);
 }
 
-.eraseBtn {
+.actionBtn {
   width: 100px;
 }
 
 .hiding {
   display: none;
+}
+
+input[type=number] {
+  border: 2px solid var(--dark);
+  font-family: inherit;
+  font-size: 16px;
+}
+
+input[type=number]:focus {
+  outline: none;
 }

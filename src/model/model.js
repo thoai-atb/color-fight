@@ -4,6 +4,7 @@ class Model {
         this.height = height;
         this.maxHealth = maxHealth;
         this.rule = rule;
+        this.sprinkleAmount = 1;
         this.initMatrix();
         this.run();
     }
@@ -29,7 +30,7 @@ class Model {
     }
 
     sprinkle() {
-        for(let i = 0; i<100; i++) {
+        for(let i = 0; i<this.sprinkleAmount; i++) {
             let index = Math.floor(Math.random() * this.matrix.length);
             let teamCode = this.rule.teams[Math.floor(Math.random() * this.rule.teams.length)];
             this.putIndex(teamCode, index);
