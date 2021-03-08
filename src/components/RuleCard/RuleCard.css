@@ -11,7 +11,8 @@
   }
 
   .rule-card-highlight {
-    border: 3px solid rgb(12, 28, 75);
+    /* border: 3px solid rgb(12, 28, 75); */
+    background-color: var(--light2);
   }
 
   .rule-card:hover {

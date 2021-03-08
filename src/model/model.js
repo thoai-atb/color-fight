@@ -28,6 +28,18 @@ class Model {
         this.initMatrix();
     }
 
+    sprinkle() {
+        for(let i = 0; i<100; i++) {
+            let index = Math.floor(Math.random() * this.matrix.length);
+            let teamCode = this.rule.teams[Math.floor(Math.random() * this.rule.teams.length)];
+            this.putIndex(teamCode, index);
+        }
+    }
+
+    putIndex(teamCode, index) {
+        this.matrix[index] = {team: teamCode, level: this.maxHealth};
+    }
+
     put(teamCode, x, y) {
         if(x < 0 || x >= this.width || y < 0 || y >= this.height)
             return;

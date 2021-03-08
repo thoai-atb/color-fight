@@ -28,7 +28,6 @@ h1 {
 }
 
 button {
-  width: 50px;
   height: 50px;
   padding: 10px;
   font-size: 20px;
@@ -41,9 +40,12 @@ button:active {
   filter: brightness(0.5);
 }
 
-button:focus, button:hover {
-  outline: none;
+button:hover {
   transform: rotate(1deg) scale(0.9);
+}
+
+button:focus {
+  outline: none;
 }
 
 .eraseBtn {

@@ -15,6 +15,8 @@ const App = () => {
     const keyDown = (e) => {
       if(e.key > '0' && e.key <= '9')
         selectTeam(model.rule.teams[parseInt(e.key) - 1]);
+      if(e.key === ' ')
+        model.sprinkle();
     }
     document.addEventListener('keydown', keyDown);
   }, []);
@@ -49,6 +51,7 @@ const App = () => {
             return <ColorButton key={index} label={index + 1} selected={selectedTeam === teamID} team={teamID} func={selectTeam} />
           })
         }
+        <button onClick={() => model.sprinkle()}>Sprinkle</button>
         <button className='eraseBtn' onClick={() => model.clear()}>Clear</button>
       </div>
       <div>
