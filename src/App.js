@@ -3,6 +3,7 @@ import Canvas from './components/Canvas/Canvas.js'
 import ColorButton from './components/ColorButton/ColorButton.js'
 import RuleCard from './components/RuleCard/RuleCard.js'
 import RuleSelectUI from './components/RuleSelectUI/RuleSelectUI.js'
+import Settings from './components/Settings/Settings.js'
 import rules from './data/rules.json'
 const {Model} = require('./model/Model.js')
 const model = new Model(800, 500, 12, rules[0])
@@ -45,7 +46,7 @@ const App = () => {
       <div>
         <Canvas model={model} selectedTeam={selectedTeam}/>
       </div>
-      <div>
+      <div className='toolbar'>
         {
           model.rule.teams.map((teamID, index) => {
             return <ColorButton key={index} label={index + 1} selected={selectedTeam === teamID} team={teamID} func={selectTeam} />
@@ -53,6 +54,7 @@ const App = () => {
         }
         <button onClick={() => model.sprinkle()}>Sprinkle</button>
         <button className='eraseBtn' onClick={() => model.clear()}>Clear</button>
+        <Settings/>
       </div>
       <div>
         <h2>Rule:</h2>
