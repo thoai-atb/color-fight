@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/color-fight/static/css/main.99b4e129.chunk.css",
+    "main.js": "/color-fight/static/js/main.b1a5f6f5.chunk.js",
+    "main.js.map": "/color-fight/static/js/main.b1a5f6f5.chunk.js.map",
+    "runtime-main.js": "/color-fight/static/js/runtime-main.bb811f2b.js",
+    "runtime-main.js.map": "/color-fight/static/js/runtime-main.bb811f2b.js.map",
+    "static/js/2.652559bf.chunk.js": "/color-fight/static/js/2.652559bf.chunk.js",
+    "static/js/2.652559bf.chunk.js.map": "/color-fight/static/js/2.652559bf.chunk.js.map",
+    "static/js/3.68c9c594.chunk.js": "/color-fight/static/js/3.68c9c594.chunk.js",
+    "static/js/3.68c9c594.chunk.js.map": "/color-fight/static/js/3.68c9c594.chunk.js.map",
+    "index.html": "/color-fight/index.html",
+    "static/css/main.99b4e129.chunk.css.map": "/color-fight/static/css/main.99b4e129.chunk.css.map",
+    "static/js/2.652559bf.chunk.js.LICENSE.txt": "/color-fight/static/js/2.652559bf.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/color-fight/static/media/JosefinSlab-VariableFont_wght.318928b4.ttf",
+    "static/media/settings.9caee2e4.svg": "/color-fight/static/media/settings.9caee2e4.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bb811f2b.js",
+    "static/js/2.652559bf.chunk.js",
+    "static/css/main.99b4e129.chunk.css",
+    "static/js/main.b1a5f6f5.chunk.js"
+  ]
+}
